@@ -1,8 +1,8 @@
-# 4. CASE STUDY: BABY NAMES
+# CASE STUDY: BABY NAMES
 
 # Load tidyverse:
 library(tidyverse) 
-# Load the Babynames data set:
+# Load the Babynames dataset:
 babynames <- readRDS("babynames.rds") # represent the names of babies born in the US each year.
 # Examine the data set:
 glimpse(babynames)
@@ -13,7 +13,7 @@ babynames_filtered <- babynames %>%
 # Use ggplot2 to generate a plot for the filtered name:
 ggplot(babynames_filtered, aes(x = year, y = number)) +
   geom_line() 
-# The plot shows many baies born in the 70s and 80s were  named "Amy", but relatively few today.
+# The plot shows many babies born in the 70s and 80s were named "Amy", but relatively few today.
 
 # Filter for multiple names:
 babynames_multiple <- babynames %>%
