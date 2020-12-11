@@ -11,7 +11,8 @@ glimpse(babynames)
 babynames_filtered <- babynames %>%
   filter(name == "Amy")
 # Use ggplot2 to generate a plot for the filtered name:
-ggplot(babynames_filtered, aes(x = year, y = number)) +
+ggplot(babynames_filtered, 
+       aes(year, number)) +
   geom_line() 
 # The plot shows many babies born in the 70s and 80s were named "Amy", but relatively few today.
 
@@ -19,7 +20,9 @@ ggplot(babynames_filtered, aes(x = year, y = number)) +
 babynames_multiple <- babynames %>%
   filter(name %in% c("Amy", "Christopher"))
 # Visualize these names as a line plot over time:
-ggplot(babynames_multiple, aes(x = year, y = number, color = name))                          + geom_line()
+ggplot(babynames_multiple, 
+       aes(year, number, 
+           color = name))                          + geom_line()
 
 # Filter and arrange for one year:
 babynames %>%
@@ -35,7 +38,10 @@ babynames %>%
 selected_names <- babynames %>%
   filter(name %in% c("Steven", "Thomas", "Matthew"))
 # Visualize the names over time:
-ggplot(selected_names, aes(x = year, y = number, color = name)) +                         geom_line() 
+ggplot(selected_names, 
+       aes(year, number, 
+           color = name)) + 
+  geom_line() 
 # A different total of number of babies are born in each year, and what we're interested in is what percentage of people born in that year have that name.
 # First calculate how many people were born in each year:
 babynames <- babynames %>%
@@ -46,12 +52,16 @@ babynames <- babynames %>%
   # calculate the fraction of people born in each year that have each name.
   mutate(fraction = number/year_total)
 # Graph again the 3 names but use fraction instead of number:
-ggplot(selected_names, aes(x = year, y = fraction, color = name)) + geom_line()
+ggplot(selected_names, 
+       aes(year, fraction, 
+           color = name)) + 
+  geom_line()
 # The graph looks different, because the data set includes relatively few babies from 1800s and early 1900s.
 
 # Adding the total and maximum for each name:
 babynames %>%
   group_by(name) %>%
-  mutate(name_total = sum(number), name_max = max(number)) %>%
+  mutate(name_total = sum(number), 
+         name_max = max(number)) %>%
   ungroup() %>%
   mutate(fraction_max = number/name_max)
